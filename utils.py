@@ -15,7 +15,7 @@ nlp = spacy.load("en_core_web_sm")
 
 ###
 # Paste API key here
-ELI_API_KEY = "eli-19094929-d509-47d7-bf5a-984e154eb1ef"
+ELI_API_KEY = ""
 # ELI_API_KEY = open(".eli-key").read().strip()
 
 ELI_API_URL = "https://gateway.eli.gaia.gic.ericsson.se"
