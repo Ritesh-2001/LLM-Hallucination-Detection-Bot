@@ -69,29 +69,3 @@ if user_input:
     st.image('llm_prompted_Score.png', caption='LLM prompted Score')   ####----- Comment out if no image
 
 # Hallucination score = 1- self_similarity_score
-
-# # TESTING APP WITHOUT STREAMLIT (FOR DEBUGGING)
-# prompt='Who is Evelyn hartwell?'
-# output, sampled_passages = utils.get_output_and_samples(prompt)
-# print('output:',output)
-# print('sample:',sampled_passages)
-# # LLM score
-# start = time()
-# # self_similarity_score = utils.llm_evaluate(output,sampled_passages)
-# self_similarity_score,df = utils.get_self_check_nli(output,sampled_passages)
-
-# # try:
-# #   self_similarity_score = float(self_similarity_score)
-# # except ValueError:
-# #   # Extract number with decimal point using a capturing group
-# #   match = re.search(r'\d+\.\d+', self_similarity_score)
-# #   if match:
-# #     self_similarity_score = float(match.group())  # Extract the entire matched group
-# #   else:
-# #     # Handle cases where no number with decimal point is found (optional)
-# #     self_similarity_score = None  # Or raise an error
-
-# end = time()
-# print(type(self_similarity_score))
-# print('self_similarity_score:',self_similarity_score,'END')
-# print(df.head)
