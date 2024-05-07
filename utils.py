@@ -12,65 +12,6 @@ else:
 # Load Spacy English model
 nlp = spacy.load("en_core_web_sm")
 
-
-###
-# Paste API key here
-ELI_API_KEY = ""
-# ELI_API_KEY = open(".eli-key").read().strip()
-
-ELI_API_URL = "https://gateway.eli.gaia.gic.ericsson.se"
-import warnings
-import requests
-
-warnings.filterwarnings("ignore")
-
-
-def eli_chat(
-    messages=[],
-    model: str = "llama",
-    max_new_tokens=128,
-    temperature=0.5,
-    top_p=0.95,
-    top_k=10,
-):
-    """
-    Make API call to ELI LLM Chat endpoint
-
-    The input messages field follows the format:
-        [
-            {"role": "system", "content" : "<message>"},
-            {"role": "user", "content" : "<message>"}
-            {"role": "assistant", "content" : "<message>"},
-        ]
-    Available Models: [llama, glm, mpt]
-    """
-
-    try:
-        payload = {
-            "model": model,
-            "messages": messages,
-            "temperature": temperature,
-            "max_new_tokens": max_new_tokens,
-            "top_p": top_p,
-            "top_k": top_k,
-        }
-        headers = {
-            "Authorization": f"Bearer {ELI_API_KEY}",
-            "Content-Type": "application/json",
-        }
-        response = requests.post(
-            f"{ELI_API_URL}/api/v1/llm/chat",
-            json=payload,
-            headers=headers,
-            timeout=(300, 300),
-            verify=False,
-        )
-        if response.ok:
-            return response.json()["choices"][0]["message"]["content"]
-        return "Failed to get response."
-    except Exception as ex:
-        return f"An error occurred: {ex}"
-###
 ##------------------option1
 def consistency_check_LLM(sentence, context):
     response = eli_chat(
